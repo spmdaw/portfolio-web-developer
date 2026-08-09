@@ -1,0 +1,146 @@
+/* ====== REGISTER PAGE ====== */
+body.bg-light{
+  background:#000000!important;
+  font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  color:#ffffff!important;
+  overflow:auto!important;
+}
+
+/* --- Hero principal --- */
+body.bg-light .hero{
+  position:relative;
+  height:75vh;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  overflow:hidden;
+  background:#000; /* fondo negro */ 
+}
+body.bg-light .title-clip{
+  position:relative;
+  z-index:3;
+  font-size:clamp(2.8rem,8vw,6rem);
+  font-weight:900;
+  line-height:.9;
+  color:#fff; /* título en blanco */
+  text-transform:uppercase;
+  letter-spacing:-.03em;
+}
+
+/* --- Collage detrás del título (en color) --- */
+body.bg-light .hero .collage{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+}
+body.bg-light .hero .collage img{
+  position:absolute;
+  width:clamp(200px,30vw,380px);
+  aspect-ratio:4/3;
+  object-fit:cover;
+  border-radius:6px;
+  box-shadow:0 15px 30px rgba(0,0,0,.2);
+  opacity:1;                    /* color pleno */
+  filter:none;                  /* sin B/N */
+  mix-blend-mode:normal;        /* sin multiplicar */
+  animation:floatCard var(--dur,16s) ease-in-out infinite alternate;
+}
+body.bg-light .hero .collage img:nth-child(1){--dur:18s;top:8%;left:30%;transform:rotate(-6deg)}
+body.bg-light .hero .collage img:nth-child(2){--dur:15s;top:35%;left:15%;transform:rotate(7deg)}
+body.bg-light .hero .collage img:nth-child(3){--dur:20s;top:45%;left:45%;transform:rotate(-9deg)}
+@keyframes floatCard{
+  0%{transform:translateY(0) rotate(var(--angle,0deg))}
+  50%{transform:translateY(-25px) rotate(calc(var(--angle,0deg)+3deg))}
+  100%{transform:translateY(0) rotate(var(--angle,0deg))}
+}
+
+/* --- Formulario centrado y más grande --- */
+body.bg-light .container{
+  margin-top:1.5rem;            /* espacio entre hero y formulario */
+  min-height:65vh;              /* altura para centrar */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  z-index:4;
+}
+body.bg-light .card{
+  background:#fff;
+  border:none;
+  border-radius:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  max-width:560px;              /* tamaño del formulario */
+  margin:auto;
+}
+body.bg-light .card-body{
+  padding:2rem !important;
+}
+body.bg-light .card-body label,
+body.bg-light .form-label{
+  color:#111;
+  font-weight:700;
+  font-size:1.1rem;
+}
+body.bg-light .form-control{
+  border:1.5px solid #ddd;
+  border-radius:10px;
+  font-size:1.1rem;
+}
+body.bg-light .form-control:focus{
+  border-color:#000;
+  box-shadow:0 0 0 2px rgba(0,0,0,.05);
+}
+
+/* --- Botón negro con texto blanco; hover gris con texto negro --- */
+body.bg-light .btn-primary{
+  background:#000 !important;
+  color:#fff !important;
+  border:none;
+  border-radius:10px;
+  padding:1rem;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  cursor:pointer;
+}
+body.bg-light .btn-primary:hover{
+  background:#e5e5e5 !important;
+  color:#000 !important;
+}
+
+/* --- Galería de avatares más grande --- */
+.avatar-gallery{
+  display:flex;
+  gap:.8rem;
+  justify-content:center;
+  margin:1.5rem 0;
+}
+.avatar-gallery img{
+  width:80px;                   /* antes 64px */
+  height:80px;
+  object-fit:cover;
+  border-radius:50%;
+  border:2px solid transparent;
+  cursor:pointer;
+  transition:transform .2s,border-color .2s;
+}
+.avatar-gallery img:hover{
+  transform:scale(1.05);
+  border-color:#000;
+}
+.avatar-gallery img.selected{
+  border-color:#000;
+  transform:scale(1.1);
+}
+/* --- Texto final debajo del formulario --- */
+body.bg-light small,
+body.bg-light small a {
+  color:#000 !important;
+  font-weight:600;
+}
+
+body.bg-light small a:hover {
+  text-decoration:underline;
+}
+
