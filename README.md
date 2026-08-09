@@ -20,6 +20,9 @@ Estas son algunas de las tecnologías con las que he trabajado:
 
 **HTML5 · CSS3 · JavaScript · PHP · MySQL · Java**
 
+
+
+
 ##  PROYECTOS DESTACADOS
 
 ###  MoodPlanned — TFG
