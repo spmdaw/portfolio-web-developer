@@ -1,0 +1,41 @@
+<footer class="footer text-light pt-5 pb-4 mt-5">
+  <div class="container text-center text-md-start">
+    <div class="row align-items-start">
+      <!-- Logo / Marca -->
+      <div class="col-md-4 mb-4 mb-md-0">
+        <img src="./assets/images/logo.png" alt="Logo" width="200" height="50">
+        <p class="small mb-3" style="padding-right: 60px;">
+          Encuentra los mejores planes, actividades y escapadas cerca de ti.
+          ¡Haz de cada día una experiencia inolvidable!
+        </p>
+      </div>
+
+      <!-- Enlaces -->
+      <div class="col-md-4 mb-4 mb-md-0">
+        <h5 class="text-uppercase fw-semibold mb-3">Descubre</h5>
+        <ul class="list-unstyled">
+          <li><a href="./index.php" class="footer-link">Inicio</a></li>
+          <li><a href="./create_plan.php" class="footer-link">Crear plan</a></li>
+          <li><a href="./mood_filter.php" class="footer-link">Buscar por Mood</a></li>
+        </ul>
+      </div>
+
+      <!-- Redes Sociales -->
+      <div class="col-md-4 text-center text-md-end">
+        <h5 class="text-uppercase fw-semibold mb-3">Síguenos</h5>
+        <div class="d-flex justify-content-center justify-content-md-end">
+          <a href="https://www.instagram.com/moodplanned?igsh=NHIyMXlrMzNybWJj" class="social-link me-3"><i class="bi bi-instagram"></i></a>
+          <a href="https://x.com/moodplanner_" class="social-link me-3"><i class="bi bi-twitter-x"></i></a>
+          <a href="https://www.tiktok.com/@moodplanner_" class="social-link"><i class="bi bi-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="mt-5 mb-3 text-secondary">
+
+    <!-- Copyright -->
+    <div class="text-center small">
+      © 2025 <span class="fw-semibold">Moodplaned</span>. Todos los derechos reservados.
+    </div>
+  </div>
+</footer>
