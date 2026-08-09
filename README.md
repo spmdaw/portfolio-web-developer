@@ -23,6 +23,7 @@ Estas son algunas de las tecnologías con las que he trabajado:
 ## 🚀 Proyectos destacados
 
 ###  MoodPlanned — TFG
+![Logo de MoodPlanned](./logo.png)
 
 Aplicación web que recomienda actividades según el **estado emocional del usuario**.
 
