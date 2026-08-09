@@ -33,8 +33,4 @@ Aplicación web que recomienda actividades según el **estado emocional del usua
 
 👤 Usuarios · 😊 Estado de ánimo · 🗓️ Planes · ❤️ Favoritos · ⭐ Valoraciones
 
-
-<video width="600" controls>
-  <source src="./video-project.mp4.mp4" type="video/mp4">
-  Tu navegador no soporta la reproducción de vídeo.
-</video>
+<video src="./VIDEO.mp4" width="600" controls></video>
