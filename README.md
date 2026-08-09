@@ -23,7 +23,7 @@ Estas son algunas de las tecnologías con las que he trabajado:
 ## 🚀 Proyectos destacados 
 
 
-<img src="./logo.png" alt="Logo de MoodPlanned" width="150">
+<img src="./logo.png" alt="Logo de MoodPlanned" width="200">
 
 Aplicación web que recomienda actividades según el **estado emocional del usuario**.
 
