@@ -36,3 +36,6 @@ Aplicación web que recomienda actividades según el **estado emocional del usua
 https://github.com/user-attachments/assets/a6e7a445-a341-4910-b87e-052d21a75044
 
 
+[![Ver proyecto completo](https://img.shields.io/badge/🔎_VER_PROYECTO_COMPLETO-MoodPlanned-2ea44f?style=for-the-badge)](./TFG)
+
+
