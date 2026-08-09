@@ -33,4 +33,7 @@ Aplicación web que recomienda actividades según el **estado emocional del usua
 
 👤 Usuarios · 😊 Estado de ánimo · 🗓️ Planes · ❤️ Favoritos · ⭐ Valoraciones
 
-<video src="./VIDEO.mp4" width="600" controls></video>
+
+https://github.com/user-attachments/assets/a6e7a445-a341-4910-b87e-052d21a75044
+
+
