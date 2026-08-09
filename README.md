@@ -5,3 +5,17 @@
 Graduada en **Desarrollo de Aplicaciones Web (DAW)**.
 
 Me gusta crear aplicaciones web y seguir aprendiendo nuevas tecnologías. En este perfil comparto proyectos académicos y personales en los que he trabajado.
+### 🛠️ Tecnologías
+
+Estas son algunas de las tecnologías con las que he trabajado:
+
+<p align="left">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="45" alt="HTML5"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="45" alt="CSS3"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="45" alt="JavaScript"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" width="45" alt="PHP"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" width="45" alt="MySQL"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" width="45" alt="Java"/>
+</p>
+
+**HTML5 · CSS3 · JavaScript · PHP · MySQL · Java**
