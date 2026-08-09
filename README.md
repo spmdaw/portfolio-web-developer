@@ -5,7 +5,7 @@
 Graduada en **Desarrollo de Aplicaciones Web (DAW)**.
 
 Me gusta crear aplicaciones web y seguir aprendiendo nuevas tecnologías. En este perfil comparto proyectos académicos y personales en los que he trabajado.
-### 🛠️ Tecnologías
+###  Tecnologías
 
 Estas son algunas de las tecnologías con las que he trabajado:
 
@@ -20,9 +20,9 @@ Estas son algunas de las tecnologías con las que he trabajado:
 
 **HTML5 · CSS3 · JavaScript · PHP · MySQL · Java**
 
-## 🚀 Proyectos destacados
+##  Proyectos destacados
 
-### 🎓 MoodPlanned — TFG
+###  MoodPlanned — TFG
 
 <img src="./logo.png" alt="Logo de MoodPlanned" width="300">
 
