@@ -20,10 +20,10 @@ Estas son algunas de las tecnologías con las que he trabajado:
 
 **HTML5 · CSS3 · JavaScript · PHP · MySQL · Java**
 
-## 🚀 Proyectos destacados
+## 🚀 Proyectos destacados 
 
-###  MoodPlanned — TFG
-<img src="./logo.png" alt="Logo de MoodPlanned" width="100">
+
+<img src="./logo.png" alt="Logo de MoodPlanned" width="150">
 
 Aplicación web que recomienda actividades según el **estado emocional del usuario**.
 
