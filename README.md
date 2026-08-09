@@ -1,1 +1,1 @@
-![Sonia Pérez - Desarrolladora Web](SONIA PÉREZ.png)
+![Sonia Pérez - Desarrolladora Web](sonia-banner.png)
