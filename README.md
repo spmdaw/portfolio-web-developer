@@ -35,6 +35,6 @@ Aplicación web que recomienda actividades según el **estado emocional del usua
 
 
 <video width="600" controls>
-  <source src="./proyecto-de-video.mp4" type="video/mp4">
+  <source src="./video-project.mp4.mp4" type="video/mp4">
   Tu navegador no soporta la reproducción de vídeo.
 </video>
