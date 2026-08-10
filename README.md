@@ -52,12 +52,18 @@ Durante mi formación he trabajado intensivamente con Java, desarrollando difere
 
 He trabajado con:
 
-🧩 Clases, objetos, constructores, encapsulación, herencia y polimorfismo.
-🔗 Interfaces y sobrescritura de métodos.
-📦 Colecciones como ArrayList, Set y Map.
-📄 Lectura, escritura y gestión de información mediante ficheros.
-⚠️ Gestión de excepciones y control de errores.
-🗄️ Conexión y trabajo con bases de datos.
+🧩 Clases, objetos, constructores, encapsulación, herencia y polimorfismo.<br><br>
+
+🔗 Interfaces y sobrescritura de métodos.<br><br>
+
+📦 Colecciones como ArrayList, Set y Map.<br><br>
+
+📄 Lectura, escritura y gestión de información mediante ficheros.<br><br>
+
+⚠️ Gestión de excepciones y control de errores.<br><br>
+
+🗄️ Conexión y trabajo con bases de datos.<br><br>
+
 🔄 Transformación y volcado de información entre objetos, ficheros y bases de datos.
 🧠 Desarrollo de aplicaciones aplicando estructuras de control, métodos y lógica de programación.
 🧪 Pruebas y desarrollo de proyectos utilizando herramientas como Eclipse, IntelliJ, Maven y JUnit.
