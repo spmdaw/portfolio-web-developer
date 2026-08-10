@@ -20,7 +20,8 @@ La aplicación permite al usuario descubrir y gestionar planes y actividades seg
 
 ## 🖥️ Vista de la aplicación
 
-<img width="1640" height="5561" alt="project (1)" src="https://github.com/user-attachments/assets/81b21189-166a-4faf-8b01-2696fc787468" />
+![Uploading COPIAAAAAAAAAA (1).png…]()
+
 
 
 ## 🛠️ Tecnologías
