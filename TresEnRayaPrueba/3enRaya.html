@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tres en Raya</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        text-align: center;
+        background: linear-gradient(135deg, #f8cdda, #d6a4a4);
+        color: #6a0572;
+      }
+
+      #contadores {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 20px auto;
+        width: 80%;
+        max-width: 900px;
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      #contadores p {
+        font-size: 18px;
+        margin: 0;
+        padding: 5px;
+        color: #6a0572;
+        font-weight: bold;
+      }
+
+      #temporizador p {
+        font-size: 24px;
+        font-weight: bold;
+        color: #ff85a1;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      #mensajeTurno,
+      #mensaje {
+        font-size: 20px;
+        font-weight: bold;
+        color: #ff85a1;
+        margin-top: 20px;
+      }
+
+      #mensaje {
+        font-size: 48px;
+      }
+
+      #tablero {
+        margin: 20px auto;
+      }
+
+      table {
+        border-collapse: collapse;
+        margin: auto;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      td {
+        width: 90px;
+        height: 90px;
+        border: 2px solid #b56576;
+        font-size: 36px;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.2s;
+        color: #6a0572;
+        background: #f9e4f3;
+      }
+
+      td:hover {
+        background-color: rgba(214, 164, 164, 0.5);
+        transform: scale(1.1);
+      }
+
+      td.X {
+        color: #9d4edd;
+        font-weight: bold;
+      }
+
+      td.O {
+        color: #ff85a1;
+        font-weight: bold;
+      }
+
+      button {
+        padding: 12px 24px;
+        font-size: 18px;
+        background: linear-gradient(135deg, #ffb3c6, #ff85a1);
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 8px;
+        margin-top: 15px;
+        transition: background 0.3s, transform 0.2s;
+      }
+
+      button:hover {
+        background: linear-gradient(135deg, #e6a4b4, #d6a4a4);
+        transform: scale(1.1);
+      }
+
+      .ganador {
+        background-color: #ffeb3b !important;
+        font-weight: bold;
+        transition: background 0.5s ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="contenedor1">
+      <div id="formulario">
+        <h1>MODO DEL JUEGO</h1>
+        <form>
+          <label
+            ><input
+              type="radio"
+              name="modo"
+              value="jugadorvsAleatorio"
+            />Jugador vs Aleatorio </label
+          ><br />
+          <label
+            ><input type="radio" name="modo" value="jugadorvsIA" /> Jugador vs
+            IA</label
+          ><br />
+          <label
+            ><input type="radio" name="modo" value="2jugadores" /> 2
+            Jugadores</label
+          >
+        </form>
+        <h1>TIPO DEL JUEGO</h1>
+        <form>
+          <label
+            ><input type="radio" name="tipo" value="6fichas" /> 6 Fichas</label
+          ><br />
+          <label
+            ><input type="radio" name="tipo" value="9fichas" /> 9 Fichas</label
+          >
+        </form>
+        <br />
+        <button onclick="crearTablero()">Iniciar juego</button>
+      </div>
+    </div>
+    <div id="contadores">
+      <p>Victorias del Jugador X: <span id="victoriasJugadorX">0</span></p>
+      <p>Victorias del Jugador O: <span id="victoriasJugadorO">0</span></p>
+      <p>Empates: <span id="empates">0</span></p>
+    </div>
+    <div id="temporizador">
+      <p>Tiempo restante: <span id="tiempoRestante">30</span> segundos</p>
+    </div>
+    <div id="reloj"></div>
+    <div id="mensajeTurno"></div>
+
+    <div id="tablero"></div>
+    <div id="mensaje"></div>
+    <script>
+      let tiempo = 30; // Tiempo empieza en 30 segundo ssiempre
+      let temporizadorInterval;
+      let juegoEnCurso = false;
+      let reloj = 0; // El reloj empieza siempre en 0 para contar los segundos de juego
+      let intervalo;
+      let empates = 0;
+      //Tenemos una función para el tiempo de juego en total
+      function mostrarTiempo() {
+        let segundos = reloj % 60;
+        let minutos = Math.floor(reloj / 60); //dividimos entre 60 para calcular los minutos
+        document.getElementById("reloj").innerText = minutos + ":" + segundos;
+      }
+
+      function iniciarReloj() {
+        reloj = 0;
+        minutos = 0;
+        mostrarTiempo();
+        intervalo = setInterval(() => {
+          reloj++; //sumamos uno al relooj cada segundo
+          mostrarTiempo(); //aqui iniciamos el reloj de juego total y lo mostramos por pantalla
+        }, 1000);
+      }
+
+      function crearTablero() {
+        iniciarReloj();
+        fichasX = []; //Array que guarda las fichas X
+        fichasO = []; // y en este guarda las fichas O para despues comprobar
+        fichaSeleccionada = null;
+        turnoJugador = true;
+        tiempo = 30;
+        juegoEnCurso = true;
+        let modo = document.querySelector('input[name="modo"]:checked'); //Aqui lo que hacemos es decir si esta marcada o no peor no nos da el valor aun
+        let tipo = document.querySelector('input[name="tipo"]:checked');
+        if (!modo || !tipo) {
+          alert(
+            "Por favor selecciona un modo y tipo de juego para iniciar la partida"
+          );
+          return;
+        }
+        modoV = modo.value; //Aqui nos da el valor que hemos selecionado
+        tipoV = tipo.value;
+        alert("Modo del juego: " + modoV + " " + "Tipo del juego: " + tipoV);
+
+        let tablero = document.createElement("table");
+        tableroArray = [
+          //creamos el tablero con un array de 3 x 3
+          [" ", " ", " "],
+          [" ", " ", " "],
+          [" ", " ", " "],
+        ];
+
+        for (let fila = 0; fila < 3; fila++) {
+          let filaElement = document.createElement("tr");
+          tableroArray[fila] = [];
+          //Y aqui lo que hacemos es crear la tabla con celdas y filas
+          for (let columna = 0; columna < 3; columna++) {
+            let celda = document.createElement("td");
+            celda.textContent = " ";
+            filaElement.appendChild(celda);
+            tableroArray[fila][columna] = celda;
+
+            celda.onclick = function () {
+              //cuando pulsa en la celda comprueba primero si es el modo y despues llama a la funcion que sea necesaria segun lo que haya seleccionado
+              if (modoV === "2jugadores" && tipoV === "9fichas") {
+                dosJugadores(fila, columna);
+              } else if (
+                modoV === "jugadorvsAleatorio" &&
+                tipoV === "9fichas"
+              ) {
+                marcarCelda(fila, columna);
+              } else if (modoV === "2jugadores" && tipoV === "6fichas") {
+                marcaX6Fichas(fila, columna);
+              } else if (
+                modoV === "jugadorvsAleatorio" &&
+                tipoV === "6fichas"
+              ) {
+                modo6FichasAleatorio(fila, columna);
+              } else if (
+                (modoV === "jugadorvsIA" && tipoV === "6fichas") ||
+                tipoV === "9fichas"
+              ) {
+                alert("No disponible. Cambia de modo de juego");
+              }
+            };
+          }
+          tablero.appendChild(filaElement);
+        }
+
+        let contenedor = document.getElementById("tablero");
+        contenedor.innerHTML = "";
+        contenedor.appendChild(tablero);
+        iniciarTemporizador();
+      }
+      function iniciarTemporizador() {
+        //esta funcion es para que haya un temporizador que vaya entre 30 y 0 segundos y acabe el juego si se acaba el tiempo
+        if (temporizadorInterval) clearInterval(temporizadorInterval); // Limpiamos el temporizador si ya esta en marcha
+
+        // Iniciar el temporizador
+        temporizadorInterval = setInterval(function () {
+          if (tiempo > 0) {
+            tiempo--; // Disminuir el tiempo menos 1
+            document.getElementById("tiempoRestante").textContent = tiempo; // enseñalrlo por pantalla
+          } else {
+            clearInterval(temporizadorInterval); //Paramos el temporizador si el tiempo es 0
+            terminarJuego("Perdiste el tiempo");
+          }
+        }, 1000); // se va hacer la funcion cada un segundo
+      }
+
+      function terminarJuego(mensaje) {
+        //esta funcion es para poner texto en un div cuando acaaba el temportizador
+        let mensajeElemento = document.getElementById("mensaje");
+        mensajeElemento.textContent = mensaje;
+        mensajeElemento.style.color = "red"; // Cambiar color del mensaje
+        clearInterval(temporizadorInterval); //Paramos el temporizador
+      }
+
+      function marcarCelda(fila, columna) {
+        if (!juegoEnCurso || comprobarGanador("X") || comprobarGanador("O")) {
+          return; // Si ya hay un ganador no se hace nada se para la funcion
+        }
+        if (modoV === "jugadorvsAleatorio" && tipoV === "9fichas") {
+          if (tableroArray[fila][columna].textContent === " ") {
+            //Si la celda esta vacia  marcamos con una X
+            tableroArray[fila][columna].textContent = "X";
+            if (comprobarGanador("X")) {
+              //Se comprueba el ganador de la X
+              juegoEnCurso = false; //Si hay ganador juego en curso se cambia a falso
+              return;
+            }
+            tiempo = 30; // Reiniciar el tiempo a 30 segundos cada vez que se mueve la ficha
+            iniciarTemporizador(); //iniciamos el temporizador
+            rellenarOrdenadorAleatorio(); //Y llamamos a la funcion aleatorio
+            if (comprobarGanador("O")) {
+              //comprueba si el de la ficha O ha ganado
+              juegoEnCurso = false;
+              return;
+            }
+            tiempo = 30;
+            iniciarTemporizador();
+          }
+        }
+      }
+
+      function rellenarOrdenadorAleatorio() {
+        if (comprobarGanador("X") || comprobarGanador("O")) {
+          return;
+        }
+        if (modoV === "jugadorvsAleatorio" && tipoV === "9fichas") {
+          let celdasVacias = []; //Un array donde me dice las celdas que estan vacías
+          for (let fila = 0; fila < 3; fila++) {
+            for (let columna = 0; columna < 3; columna++) {
+              if (tableroArray[fila][columna].textContent === " ") {
+                //Si la celda esta vacia la metemos en el array
+                celdasVacias.push({ fila, columna });
+              }
+            }
+          }
+          if (celdasVacias.length === 0) return; //si estan todas las celdas ocupadas se para la funcion
+          let aleatorio = Math.floor(Math.random() * celdasVacias.length); //Cogemos un numero aleatorio
+          let { fila, columna } = celdasVacias[aleatorio]; //Cogemos la posicion de la celda aleatroia que despues vamos a poner una O
+          tableroArray[fila][columna].textContent = "O";
+
+          tiempo = 30;
+          iniciarTemporizador();
+        }
+      }
+      function comprobarGanador(jugador) {
+        let mensaje = document.getElementById("mensaje");
+        let victoriasJugadorX = document.getElementById("victoriasJugadorX");
+        let victoriasJugadorO = document.getElementById("victoriasJugadorO");
+        let empatesElemento = document.getElementById("empates");
+
+        // Verificar si hay una fila ganadora
+        for (let cont = 0; cont < 3; cont++) {
+          if (
+            //si las 3 celdas de la fila soniguales al jugador gana
+            tableroArray[cont][0].textContent === jugador &&
+            tableroArray[cont][1].textContent === jugador &&
+            tableroArray[cont][2].textContent === jugador
+          ) {
+            // Marcar ganador las celdas de la fila esto es para ponerle una clase
+            tableroArray[cont][0].classList.add("ganador");
+            tableroArray[cont][1].classList.add("ganador");
+            tableroArray[cont][2].classList.add("ganador");
+            clearInterval(temporizadorInterval); //Parar el temporizador
+
+            // Actualizar el mensaje y la victoria
+            if (jugador === "X") {
+              mensaje.textContent = "¡Ha ganado el Jugador X! 🎉";
+              victoriasJugadorX.textContent =
+                parseInt(victoriasJugadorX.textContent) + 1;
+            } else {
+              mensaje.textContent = "¡Ha Ganado el Jugador O! 🎉";
+              victoriasJugadorO.textContent =
+                parseInt(victoriasJugadorO.textContent) + 1;
+            }
+            return true; // Salir de la funcion si hay un ganador
+          }
+
+          // Ver si hay una columna que gane
+          if (
+            tableroArray[0][cont].textContent === jugador &&
+            tableroArray[1][cont].textContent === jugador &&
+            tableroArray[2][cont].textContent === jugador
+          ) {
+            // Marcar como ganador las celdas de la columna
+            tableroArray[0][cont].classList.add("ganador");
+            tableroArray[1][cont].classList.add("ganador");
+            tableroArray[2][cont].classList.add("ganador");
+            clearInterval(temporizadorInterval);
+
+            // Actualizar el mensaje y la victoria
+            if (jugador === "X") {
+              mensaje.textContent = "¡Ha ganado el Jugador X! 🎉";
+              victoriasJugadorX.textContent =
+                parseInt(victoriasJugadorX.textContent) + 1; //Aumenatamos en 1 cada vez que se gane y que aparezca un mensaje
+            } else {
+              mensaje.textContent = "¡Ha ganado el Jugador O! 🎉";
+              victoriasJugadorO.textContent =
+                parseInt(victoriasJugadorO.textContent) + 1;
+            }
+            return true;
+          }
+        }
+
+        // Ver si hay una diagonal qeu gane
+        if (
+          tableroArray[0][0].textContent === jugador &&
+          tableroArray[1][1].textContent === jugador &&
+          tableroArray[2][2].textContent === jugador
+        ) {
+          // Marcar como ganador las celdas de la diagonal
+          tableroArray[0][0].classList.add("ganador");
+          tableroArray[1][1].classList.add("ganador");
+          tableroArray[2][2].classList.add("ganador");
+          clearInterval(temporizadorInterval); // Detener el temporizador
+
+          // Actualizar el mensaje y la victoria
+          if (jugador === "X") {
+            mensaje.textContent = "¡Ha ganado el Jugador X! 🎉";
+            victoriasJugadorX.textContent =
+              parseInt(victoriasJugadorX.textContent) + 1;
+          } else {
+            mensaje.textContent = "¡Ha ganado el Jugador O! 🎉";
+            victoriasJugadorO.textContent =
+              parseInt(victoriasJugadorO.textContent) + 1;
+          }
+          return true;
+        }
+        if (
+          tableroArray[0][2].textContent === jugador &&
+          tableroArray[1][1].textContent === jugador &&
+          tableroArray[2][0].textContent === jugador
+        ) {
+          // Marcar ganador las celdas de la diagonal
+          tableroArray[0][2].classList.add("ganador");
+          tableroArray[1][1].classList.add("ganador");
+          tableroArray[2][0].classList.add("ganador");
+          clearInterval(temporizadorInterval);
+
+          if (jugador === "X") {
+            mensaje.textContent = "¡Ha ganado el Jugador X! 🎉";
+            victoriasJugadorX.textContent =
+              parseInt(victoriasJugadorX.textContent) + 1;
+          } else {
+            mensaje.textContent = "¡Ha ganado el Jugador O! 🎉";
+            victoriasJugadorO.textContent =
+              parseInt(victoriasJugadorO.textContent) + 1;
+          }
+          return true;
+        }
+
+        // Si no hay ganador, ver si hay un empate si el tablero esta lleno hay un empate
+        let lleno = true;
+        for (let fila = 0; fila < 3; fila++) {
+          for (let columna = 0; columna < 3; columna++) {
+            if (tableroArray[fila][columna].textContent === " ") {
+              lleno = false; // Si encontramos una celda entoncces se cambia la variable a falso
+              break;
+            }
+          }
+          if (!lleno) break;
+        }
+
+        if (lleno) {
+          mensaje.textContent = "¡Es un empate! 🤝";
+          empates++; // Incrementar el contador de empates
+          empatesElemento.textContent = empates; // Actualizar el contador de empates
+          clearInterval(temporizadorInterval); // Detener el temporizador
+          juegoEnCurso = false;
+          return true; // Salir de la función si es empate
+        }
+
+        return false;
+      }
+
+      function reiniciarJuego() {
+        // se reinciia todo el juego el tablero se vacia  y se crea de nuevo todo vacio
+        document.getElementById("tablero").innerHTML = "";
+        crearTablero();
+        turnoJugador = true;
+        mensajeTurno.innerHTML = " ";
+        clearInterval(intervalo); //detenemos el temporizador
+
+        // Poner el contador a 0
+        reloj = 0;
+        mostrarTiempo();
+      }
+
+      let turnoJugador = true; // true = Turno del Jugador 1 EN ESTE CASO PONEMOS LA X
+
+      function dosJugadores(fila, columna) {
+        //Esta funcion es lo mismo que la otra donde marcarX solo que intercambiando los turnos se busca una celda vacia y se coloaca ficha y cada vez va uno diferente  una X y despues la O y asi sucesivamente
+        if (!juegoEnCurso || comprobarGanador("X") || comprobarGanador("O")) {
+          return;
+        }
+        if (modoV === "2jugadores" && tipoV === "9fichas") {
+          let mensajeTurno = document.getElementById("mensajeTurno"); //Donde apareceera a quien le toca jugar
+
+          if (tableroArray[fila][columna].textContent === " ") {
+            if (turnoJugador) {
+              tableroArray[fila][columna].textContent = "X";
+              mensajeTurno.textContent = "Turno del Jugador 2 (O)";
+            } else {
+              tableroArray[fila][columna].textContent = "O";
+              mensajeTurno.textContent = "Turno del Jugador 1 (X)";
+            }
+            if (turnoJugador) {
+              if (comprobarGanador("X")) {
+                juegoEnCurso = false;
+                return;
+              }
+            } else {
+              if (comprobarGanador("O")) {
+                juegoEnCurso = false;
+                return;
+              }
+            }
+            // Cambiar turno
+            turnoJugador = !turnoJugador;
+            tiempo = 30;
+            iniciarTemporizador();
+          }
+        }
+      }
+
+      let fichasX = []; // Almacena la posición de las fichas X en el tablero
+      let fichasO = [];
+      const maxFichas = 3; // El maximo de fichas en el tablero y es constante porque nucna cambia
+      let fichaSeleccionada = null; // Guarda la ficha que se esta usando para marcar
+
+      function marcaX6Fichas(fila, columna) {
+        if (!juegoEnCurso || comprobarGanador("X") || comprobarGanador("O")) {
+          return;
+        }
+
+        if (modoV === "2jugadores" && tipoV === "6fichas") {
+          let celda = tableroArray[fila][columna];
+          let jugadorActual;
+          let fichasActuales;
+
+          if (turnoJugador) {
+            //Aqui decimos cual es el turno del jugador y cambiamso la ficha que se va a poner en el tablero
+            jugadorActual = "X";
+            jugadorSiguiente = "O";
+            fichasActuales = fichasX;
+          } else {
+            jugadorActual = "O";
+            jugadorSiguiente = "X";
+            fichasActuales = fichasO;
+          }
+          let mensajeTurno = document.getElementById("mensajeTurno");
+          mensajeTurno.textContent = "Turno del Jugador " + jugadorSiguiente;
+
+          // Si se hace clic en su la ficha, la ficha desaparece y se guarda en la variable fichaSeleccionada
+          for (let cont = 0; cont < fichasActuales.length; cont++) {
+            if (
+              fichasActuales[cont][0] === fila &&
+              fichasActuales[cont][1] === columna
+            ) {
+              celda.textContent = " "; // Borra la ficha de la celda
+              fichaSeleccionada = fichasActuales.splice(cont, 1)[0]; // Guarda la posicion y la elimina del array
+              return;
+            }
+          }
+
+          // Si hay una ficha seleccionada y la celda esta vacia, coloca la ficha en la nueva posicion
+          if (fichaSeleccionada !== null && celda.textContent === " ") {
+            celda.textContent = jugadorActual;
+            fichasActuales.push([fila, columna]); // Agrega la ficha a la nueva posición
+            fichaSeleccionada = null; // ¡Borra la ficha  seleccionada anteriormente para volver a guardar la nueva!
+
+            if (comprobarGanador(jugadorActual)) {
+              juegoEnCurso = false;
+              return;
+            }
+            turnoJugador = !turnoJugador;
+            mensajeTurno.textContent = "Turno del Jugador " + jugadorSiguiente;
+          } else if (
+            fichasActuales.length < maxFichas && //Si las fichas es menor qeu 3 y la celda esta vacia entonces se pone una ficha
+            celda.textContent === " "
+          ) {
+            celda.textContent = jugadorActual;
+            fichasActuales.push([fila, columna]);
+
+            if (comprobarGanador(jugadorActual)) {
+              juegoEnCurso = false;
+              return;
+            }
+
+            turnoJugador = !turnoJugador;
+          }
+        }
+      }
+
+      function modo6FichasAleatorio(fila, columna) {
+        //Estra funcion es una mezcla entre la fucnion de las 3 fichas y la del aleatorio
+        if (!juegoEnCurso || comprobarGanador("X") || comprobarGanador("O")) {
+          return;
+        }
+
+        let celda = tableroArray[fila][columna];
+        let jugadorActual = "X";
+        let fichasActuales = fichasX;
+
+        // Esto es la misma funcion que la anterior basicamente
+        for (let cont = 0; cont < fichasActuales.length; cont++) {
+          if (
+            fichasActuales[cont][0] === fila &&
+            fichasActuales[cont][1] === columna
+          ) {
+            celda.textContent = " "; // Eliminar ficha de la celda
+            fichaSeleccionada = fichasActuales.splice(cont, 1)[0]; // Guarda la posicion y la elimina del array
+            return;
+          }
+        }
+
+        // Si hay una ficha seleccionada, moverla a la nueva celda
+        if (fichaSeleccionada !== null && celda.textContent === " ") {
+          celda.textContent = jugadorActual;
+          fichasActuales.push([fila, columna]);
+          fichaSeleccionada = null;
+
+          if (comprobarGanador(jugadorActual)) {
+            juegoEnCurso = false;
+            return;
+          }
+
+          setTimeout(rellenarOrdenadorAleatorio6Fichas, 500); //Aqui le toca el turno a la ficha O y llamaos a la ptra funcion que se va a hacer cuando pasen 5 segundos
+        } else if (
+          fichasActuales.length < maxFichas &&
+          celda.textContent === " "
+        ) {
+          // Colocar ficha nueva si hay espacio libre
+          celda.textContent = jugadorActual;
+          fichasActuales.push([fila, columna]);
+
+          if (comprobarGanador(jugadorActual)) {
+            juegoEnCurso = false;
+            return;
+          }
+
+          setTimeout(rellenarOrdenadorAleatorio6Fichas, 500);
+        }
+      }
+
+      function rellenarOrdenadorAleatorio6Fichas() {
+        if (comprobarGanador("X") || comprobarGanador("O")) {
+          return;
+        }
+
+        let jugadorActual = "O";
+        let fichasActuales = fichasO;
+        let celdasVacias = [];
+
+        // Si ya tiene 3 fichas, primero mueve una de ellas y lo hace aleatoriamente usando el mathrandom que te da un numero aleatorio para la celda
+        if (fichasActuales.length === maxFichas) {
+          let aleatorio = Math.floor(Math.random() * fichasActuales.length);
+          let [fila, columna] = fichasActuales.splice(aleatorio, 1)[0];
+          tableroArray[fila][columna].textContent = " ";
+        }
+
+        // Encontrar celdas vacías
+        for (let fila = 0; fila < 3; fila++) {
+          for (let columna = 0; columna < 3; columna++) {
+            if (tableroArray[fila][columna].textContent === " ") {
+              celdasVacias.push([fila, columna]);
+            }
+          }
+        }
+
+        if (celdasVacias.length > 0) {
+          let aleatorio = Math.floor(Math.random() * celdasVacias.length);
+          let [fila, columna] = celdasVacias[aleatorio];
+          tableroArray[fila][columna].textContent = jugadorActual;
+          fichasActuales.push([fila, columna]);
+
+          if (comprobarGanador(jugadorActual)) {
+            juegoEnCurso = false;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
