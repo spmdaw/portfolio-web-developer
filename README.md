@@ -50,4 +50,3 @@ Juego desarrollado con HTML, CSS y JavaScript, en el que el usuario juega contra
 
 
 
-
