@@ -46,7 +46,21 @@ Juego desarrollado con HTML, CSS y JavaScript, en el que el usuario juega contra
 
 <img width="600" height="580" alt="7" src="https://github.com/user-attachments/assets/ab05029d-a77c-462d-82b0-bc1b9e7eca41" />
 
+### ☕ Java
 
+Durante mi formación he trabajado intensivamente con Java, desarrollando diferentes ejercicios y aplicaciones y profundizando especialmente en la programación orientada a objetos y la gestión de datos.
 
+He trabajado con:
 
+🧩 Clases, objetos, constructores, encapsulación, herencia y polimorfismo.
+🔗 Interfaces y sobrescritura de métodos.
+📦 Colecciones como ArrayList, Set y Map.
+📄 Lectura, escritura y gestión de información mediante ficheros.
+⚠️ Gestión de excepciones y control de errores.
+🗄️ Conexión y trabajo con bases de datos.
+🔄 Transformación y volcado de información entre objetos, ficheros y bases de datos.
+🧠 Desarrollo de aplicaciones aplicando estructuras de control, métodos y lógica de programación.
+🧪 Pruebas y desarrollo de proyectos utilizando herramientas como Eclipse, IntelliJ, Maven y JUnit.
+
+[![☕ VER PROYECTOS JAVA](https://img.shields.io/badge/☕_VER_PROYECTOS_JAVA-Java-2ea44f?style=for-the-badge)](./Java)
 
