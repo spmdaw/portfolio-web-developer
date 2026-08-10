@@ -44,7 +44,7 @@ Juego desarrollado con HTML, CSS y JavaScript, en el que el usuario juega contra
 
 🪨 Piedra · 📄 Papel · ✂️ Tijera · 🤖 Ordenador · 🏆 Resultados
 
-<img width="700" height="680" alt="7" src="https://github.com/user-attachments/assets/ab05029d-a77c-462d-82b0-bc1b9e7eca41" />
+<img width="600" height="580" alt="7" src="https://github.com/user-attachments/assets/ab05029d-a77c-462d-82b0-bc1b9e7eca41" />
 
 
 
