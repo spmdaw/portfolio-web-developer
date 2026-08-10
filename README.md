@@ -38,4 +38,17 @@ https://github.com/user-attachments/assets/a6e7a445-a341-4910-b87e-052d21a75044
 
 [![Ver proyecto completo](https://img.shields.io/badge/🔎_VER_PROYECTO_COMPLETO-MoodPlanned-2ea44f?style=for-the-badge)](./TFG)
 
+### 🎮 Piedra, Papel o Tijera
+
+Juego desarrollado con HTML, CSS y JavaScript, en el que el usuario juega contra el ordenador y puede consultar los resultados de las partidas.
+
+🪨 Piedra · 📄 Papel · ✂️ Tijera · 🤖 Ordenador · 🏆 Resultados
+
+<img width="851" height="782" alt="7" src="https://github.com/user-attachments/assets/1f81870d-2461-4048-82a9-5c578425ab87" />
+
+
+
+
+
+
 
