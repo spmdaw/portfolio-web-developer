@@ -44,7 +44,7 @@ Juego desarrollado con HTML, CSS y JavaScript, en el que el usuario juega contra
 
 🪨 Piedra · 📄 Papel · ✂️ Tijera · 🤖 Ordenador · 🏆 Resultados
 
-<img src="https://github.com/user-attachments/assets/a6e7a445-a341-4910-b87e-052d21a75044" alt="Demo de MoodPlanned" width="600">
+<img width="700" height="680" alt="7" src="https://github.com/user-attachments/assets/ab05029d-a77c-462d-82b0-bc1b9e7eca41" />
 
 
 
