@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta charset="utf-8">
+        <link href='https://fonts.googleapis.com/css?family=CourierPrime' rel='stylesheet'>
+        <style>
+            body {
+                font-family: 'Courier Prime';
+                font-size: 22px;
+            }
+        </style> 
+        <title>PiramideEjer11</title>
+    </head>
+<body>
+
+    <body>
+        <div id="PiramideEjer10"></div>
+
+        <button onclick="DimeLongitud()">Crear piramide con:</button>
+
+        <input type="number" id="numero" placeholder="Escribe numero de longitud" >
+    
+        <script>   
+
+        function DimeLongitud(){
+            let numero = parseInt(document.getElementById("numero").value);;
+            let resultado = "";
+            let asteriscos = 1;
+            for (let i = numero; i > 0; i--) {
+                for (let j = i - 1; j > 0; j--) {
+                    resultado += "&nbsp;";
+                }
+                for (let k = 1; k <= asteriscos; k++) {
+                    resultado += "*";
+                }
+                resultado += "<br>";
+                asteriscos += 2;
+            }
+    
+            document.getElementById("PiramideEjer10").innerHTML = resultado; 
+    
+        }
+            
+    
+        </script>
+        
+        
+    
+</body>
+</html>

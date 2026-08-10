@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EjercicioDIVCHATGPT</title>
+</head>
+
+<body>
+
+
+    <button onclick="añadirNuevo()">Añadir</button>
+    <button onclick="borrarDivUltimo()">Borrar Ultimo</button>
+    <button onclick="borrarTodo()">Borrar todo</button>
+    <button onclick="IniciarAuto()">Iniciar Auto</button>
+    <button onclick="PararCreacion()">PARAR AUTO</button>
+
+
+
+
+
+    <script>
+        let arrayDiv = [];
+        function añadirNuevo() {
+            let divNuevo = document.createElement("div");
+            let numeroAleatorio = Math.floor(Math.random() * 11);
+            divNuevo.innerHTML = numeroAleatorio;
+            if (divNuevo.innerHTML > 5) {
+                divNuevo.style.color = "yellow";
+            } else {
+                divNuevo.style.color = "blue";
+            }
+            document.body.appendChild(divNuevo);
+            arrayDiv.push(divNuevo);
+        }
+
+        function borrarDivUltimo() {
+            let UltimoNumero = arrayDiv.pop()
+            UltimoNumero.remove();
+
+        }
+        function borrarTodo() {
+            arrayDiv.forEach(elemento => {
+                elemento.remove();
+            });
+        }
+
+        let intervalo;
+        function IniciarAuto() {
+
+            intervalo = setInterval(() => {
+                let numeroAleatorio = Math.floor(Math.random() * 11);
+                let div = document.createElement("div");
+                div.innerHTML = numeroAleatorio;
+                if (div.innerHTML > 5) {
+                    div.style.color = "red";
+                } else {
+                    div.style.color = "orange";
+                }
+                document.body.appendChild(div);
+            }, 2000);
+        }
+
+        function PararCreacion() {
+            clearInterval(intervalo);
+
+        }
+    </script>
+
+
+
+</body>
+
+</html>

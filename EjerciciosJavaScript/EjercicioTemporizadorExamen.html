@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            background-color: #dcd6f7;
+            /* Fondo color lila pastel */
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        p {
+            font-size: 20px;
+            margin: 10px 0;
+            color: #444;
+            font-family: 'Arial', sans-serif;
+        }
+
+        #contador,
+        #contadorPares {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        div {
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 8px;
+            border-radius: 12px;
+            font-size: 22px;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        div:hover {
+            transform: scale(1.1);
+        }
+
+        .red {
+            background-color: #ff4d4d;
+            color: white;
+        }
+
+        .green {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .aviso {
+            padding: 15px;
+            background-color: #f39c12;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <p id="contador"></p>
+    <p id="contadorPares"></p>
+
+    <script>
+
+        let contador = 3;
+        let contadorPares = 10;
+        let ArrayPares = [];
+        let contadorMensaje = 2;
+
+        setInterval(() => {
+            let numeroAleatorio = Math.floor(Math.random() * 11);
+            let div = document.createElement("div");
+            div.innerHTML = numeroAleatorio;
+            document.body.appendChild(div);
+            if (numeroAleatorio % 2 == 0) {
+                ArrayPares.push(div);
+                div.style.color = "green";
+
+            } else {
+                div.style.color = "red";
+            }
+            contador = 3;
+        }, 3000);
+
+        setInterval(() => {
+            contador--;
+            contadorPares--;
+            document.getElementById("contador").innerHTML = "El tiempo que queda para el siguiente numero es de " + contador;
+            document.getElementById("contadorPares").innerHTML = "El tiempo para que se elimien los pares es de   " + contadorPares;
+        }, 1000);
+
+        setInterval(() => {
+
+            let aviso = document.createElement("div");
+            aviso.innerHTML = "SE VAN A ELIMINAR LOS PARES";
+
+            setTimeout(() => {
+                aviso.remove();
+            }, 2000);
+
+            document.body.appendChild(aviso);
+
+            ArrayPares.forEach(elemento => {
+                elemento.remove();
+            });
+            contadorPares = 10;
+        }, 10000);
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EjericioFechaCumpleaños</title>
+</head>
+<body>
+
+    <script>
+
+//16. Realiza un programa que a partir de tu fecha de nacimiento y la
+//fecha actual te indique los días te quedan para llegar a tu
+//cumpleaños.
+
+let fechaCumple= prompt("Dime tu fecha de cumpleaños (solo dia y mes) y te digo cuantos dias quedan(separame la fecha por -)");
+let Array =fechaCumple.split("-");
+let diaCumple = parseInt(Array[0]) ;
+let mesCumple=  parseInt( Array[1]-1);
+
+
+let fechaActual=new Date(); //Aqui calculamos la fecha actual donde sale el mes, la hora le año y todo completo pero como solo queremos el mes y el dia hacemos variables
+    let dia=fechaActual.getDate(); //Estas variables y usando el metodo get calculamos el dia y el mes
+    let mes=fechaActual.getMonth();
+
+Corregirfecha(diaCumple, mesCumple);
+CalcularDias(dia,mes);
+
+function Corregirfecha(dia,mes){
+
+    if (dia>31 || mes>11) {
+        alert("Esta fecha esta mal")
+        
+    }
+    else{alert("Fecha correcta, vamos a realizar la cuenta")};
+}
+
+    function CalcularDias(dia,mes){
+        if (mes>mesCumple) {
+            alert("Tu cumpleaños ya ha pasado");
+            return;
+        }
+        
+       let TotalDias= diaCumple-dia;
+       let TotalMes= mesCumple-mes;
+
+       alert("Quedan en total para tu cumpleaños " +TotalDias+ " dias  y   " +TotalMes+ " meses ");
+}
+
+
+
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <!-- 
+    /Crea un temporizador que genere un color aleatorio en formato hexadecimal cada 4 segundos. Dicho color debe mostrarse en pantalla 
+    en un <div>, y el fondo de este <div> cambiará al nuevo color generado.
+        Además, debe haber un contador que indique el tiempo restante para generar el siguiente color.
+        Cada 12 segundos, se eliminarán los colores más oscuros (valores por debajo de #777777), mostrando un mensaje durante
+         3 segundos avisando de la eliminación./ -->
+
+
+
+    <p id="contador"></p>
+
+    <script>
+
+        let contador = 4;
+        let arrayColoresOscuros = [];
+
+        setInterval(() => {
+            let numeroAleatorio = Math.floor(Math.random() * 9999);
+            let div = document.createElement("div");
+            div.innerHTML = "#" + numeroAleatorio;
+            document.body.appendChild(div);
+            div.style.background = "#" + numeroAleatorio;
+            if (numeroAleatorio > 7777) {
+                arrayColoresOscuros.push(div);
+            }
+
+            contador = 4;
+        }, 4000);
+
+        setInterval(() => {
+            contador--;
+            document.getElementById("contador").innerHTML = "El tiempo restante para que salga otro color es de " + contador;
+        }, 1000);
+
+
+        setInterval(() => {
+            arrayColoresOscuros.forEach(element => {
+                element.remove();
+
+            });
+
+
+        }, 10000);
+
+
+    </script>
+
+</body>
+
+</html>
